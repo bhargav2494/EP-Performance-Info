@@ -7,7 +7,7 @@ provider:
   environment:
     DYNAMODB_TABLE_NAME: ${self:custom.employeeTableName}
 custom:
-  employeeTableName: emp-performanceInfo-${slef:provider.stage}
+  employeeTableName: emp-performanceInfo-${self:provider.stage}
 plugins:
   - serverless-iam-roles-per-function
 functions:
