@@ -11,7 +11,7 @@ custom:
 plugins:
   - serverless-iam-roles-per-function
 functions:
-  api:
+  empPortal:
     handler: api.handleRequest
     name: api
     memorySize: 128
