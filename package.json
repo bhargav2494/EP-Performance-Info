@@ -1,0 +1,28 @@
+{
+  "name": "ep-performance-info",
+  "version": "1.0.0",
+  "description": "Employee Performance Info Task Sprint-2",
+  "main": "api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bhargav2494/EP-Performance-Info.git"
+  },
+  "author": "Bhargav",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bhargav2494/EP-Performance-Info/issues"
+  },
+  "homepage": "https://github.com/bhargav2494/EP-Performance-Info#readme",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.428.0",
+    "@aws-sdk/util-dynamodb": "^3.428.0",
+    "aws-sdk": "^2.1473.0",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "serverless-iam-roles-per-function": "^3.2.0"
+  }
+}

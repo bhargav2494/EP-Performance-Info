@@ -1,0 +1,50 @@
+service: employee-PerformanceInfo
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: dev
+  region: ap-south-1
+  environment:
+    DYNAMODB_TABLE_NAME: ${self:custom.employeeTableName}
+custom:
+  employeeTableName: emp-performanceInfo-${slef:provider.stage}
+plugins:
+  - serverless-iam-roles-per-function
+functions:
+  api:
+    handler: api.hadleRequest
+    name: api
+    memorySize: 128
+    timeout: 5
+    events:
+      - http:
+          path: employeePerformanceInfo/{empId}
+          method: GET
+      - http:
+          path: allemployeesPerformanceInfo
+          method: GET
+      - http:
+          path: createPerformanceInfo
+          method: POST 
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - "dynamodb:GetItem"
+          - "dynamodb:Scan"
+        Resource:
+          - !GetAtt EmpPersonalInfo.Arn
+resources:
+  Resources:
+    EmpPersonalInfo:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.employeeTableName}
+        AttributeDefinitions:
+          - AttributeName: empId
+            AttributeType: S
+        keySchema:
+          - AttributeName: empId
+            keyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
