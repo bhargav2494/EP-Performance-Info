@@ -12,7 +12,7 @@ plugins:
   - serverless-iam-roles-per-function
 functions:
   api:
-    handler: api.hadleRequest
+    handler: api.handleRequest
     name: api
     memorySize: 128
     timeout: 5
