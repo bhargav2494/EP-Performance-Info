@@ -68,7 +68,7 @@ const {
       console.error(e);
       response.statusCode = 500;
       response.body = JSON.stringify({
-        message: 'Failed to create employee PerformanceInfo.',
+        message: 'Failed to create employee performanceInfo.',
         errorMsg: e.message,
         errorStack: e.stack,
       });
