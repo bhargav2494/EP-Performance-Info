@@ -1,6 +1,6 @@
 const {
     DynamoDBClient,
-    // GetItemCommand,
+    GetItemCommand,
     PutItemCommand,
     // DeleteItemCommand,
     // ScanCommand,
@@ -23,7 +23,7 @@ const {
       if (httpMethod === 'GET' && path === '/employees') {
         return getAllEmployees();
       } else if (httpMethod === 'GET') {
-        return getEmployee(event);
+        return getEmployeePerformance(event);
       } else if (httpMethod === 'POST') {
         return createEmpPerformanceInfo(event);
       } else if (httpMethod === 'PUT') {
@@ -148,7 +148,7 @@ const {
   
   // getEmployee by empID
   
-  const getEmployee = async (event) => {
+  const getEmployeePerformance = async (event) => {
     const response = { statusCode: 200 };
     try {
       const empId = event.pathParameters ? event.pathParameters.empId : null;
