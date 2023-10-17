@@ -3,7 +3,7 @@ const {
     GetItemCommand,
     PutItemCommand,
     // DeleteItemCommand,
-    // ScanCommand,
+    ScanCommand,
     // UpdateItemCommand,
   } = require('@aws-sdk/client-dynamodb');
   const { marshall, unmarshall } = require('@aws-sdk/util-dynamodb');
@@ -20,8 +20,8 @@ const {
     const response = { statusCode: 400 }; // Default response for invalid requests
   
     try {
-      if (httpMethod === 'GET' && path === '/employees') {
-        return getAllEmployees();
+      if (httpMethod === 'GET' && path === '/employees/allPerformanceInfo') {
+        return getAllEmpPerformances();
       } else if (httpMethod === 'GET') {
         return getEmployeePerformance(event);
       } else if (httpMethod === 'POST') {
@@ -233,43 +233,43 @@ const {
   
   
   
-  // Get AllEmployees List
+  // Get AllEmployees Performance List
   
-//   const getAllEmployees = async () => {
-//     const response = { statusCode: 200 };
-//     try {
-//       const { Items } = await client.send(
-//         new ScanCommand({ TableName: process.env.DYNAMODB_TABLE_NAME })
-//       );
+  const getAllEmpPerformances = async () => {
+    const response = { statusCode: 200 };
+    try {
+      const { Items } = await client.send(
+        new ScanCommand({ TableName: process.env.DYNAMODB_TABLE_NAME })
+      );
   
-//       const employees = Items.map((item) => unmarshall(item));
+      const employees = Items.map((item) => unmarshall(item));
   
-//       // Sort the employees array by empId
-//       employees.sort((a, b) => {
-//         return parseInt(a.empId) - parseInt(b.empId);
-//       });
+      // Sort the employees array by empId
+      employees.sort((a, b) => {
+        return parseInt(a.empId) - parseInt(b.empId);
+      });
   
-//       // Modify the data to include empId
-//       const sortedEmployees = employees.map((employee) => ({
-//         empId: employee.empId,
-//         ...employee,
-//       }));
+      // Modify the data to include empId
+      const sortedEmployees = employees.map((employee) => ({
+        empId: employee.empId,
+        ...employee,
+      }));
   
-//       response.body = JSON.stringify({
-//         message: 'Successfully retrieved all employees sorted by empId.',
-//         data: sortedEmployees,
-//       });
-//     } catch (e) {
-//       console.error(e);
-//       response.statusCode = 500;
-//       response.body = JSON.stringify({
-//         message: 'Failed to retrieve employees.',
-//         errorMsg: e.message,
-//         errorStack: e.stack,
-//       });
-//     }
-//     return response;
-//   };
+      response.body = JSON.stringify({
+        message: 'Successfully retrieved all employees sorted by empId.',
+        data: sortedEmployees,
+      });
+    } catch (e) {
+      console.error(e);
+      response.statusCode = 500;
+      response.body = JSON.stringify({
+        message: 'Failed to retrieve employees.',
+        errorMsg: e.message,
+        errorStack: e.stack,
+      });
+    }
+    return response;
+  };
   
   
   // Generate sequential unique empID while creating Employee
