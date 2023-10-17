@@ -44,7 +44,7 @@ resources:
             AttributeType: S
         KeySchema:
           - AttributeName: empId
-            keyType: HASH
+            KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
