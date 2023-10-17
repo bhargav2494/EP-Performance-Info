@@ -25,7 +25,7 @@ const {
       } else if (httpMethod === 'GET') {
         return getEmployee(event);
       } else if (httpMethod === 'POST') {
-        return createEmpPersonalInfo(event);
+        return createEmpPerformanceInfo(event);
       } else if (httpMethod === 'PUT') {
         return updateEmployee(event);
       } else if (httpMethod === 'DELETE') {
@@ -46,7 +46,7 @@ const {
   
   
   // Create Employee Method using async
-  const createEmpPersonalInfo = async (event) => {
+  const createEmpPerformanceInfo = async (event) => {
     const response = { statusCode: 200 };
     try {
       const body = JSON.parse(event.body);

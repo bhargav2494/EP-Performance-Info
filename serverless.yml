@@ -31,6 +31,7 @@ functions:
         Action:
           - "dynamodb:GetItem"
           - "dynamodb:Scan"
+          - "dynamodb:PutItem"
         Resource:
           - !GetAtt EmpPersonalInfo.Arn
 resources:
