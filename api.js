@@ -148,43 +148,43 @@ const {
   
   // getEmployee by empID
   
-//   const getEmployee = async (event) => {
-//     const response = { statusCode: 200 };
-//     try {
-//       const empId = event.pathParameters ? event.pathParameters.empId : null;
+  const getEmployee = async (event) => {
+    const response = { statusCode: 200 };
+    try {
+      const empId = event.pathParameters ? event.pathParameters.empId : null;
   
-//       if (!empId) {
-//         throw new Error('empId parameter is missing');
-//       }
+      if (!empId) {
+        throw new Error('empId parameter is missing');
+      }
   
-//       const params = {
-//         TableName: process.env.DYNAMODB_TABLE_NAME,
-//         Key: marshall({ empId }),
-//       };
+      const params = {
+        TableName: process.env.DYNAMODB_TABLE_NAME,
+        Key: marshall({ empId }),
+      };
   
-//       const { Item } = await client.send(new GetItemCommand(params));
+      const { Item } = await client.send(new GetItemCommand(params));
   
-//       if (Item) {
-//         const employeeData = unmarshall(Item);
-//         response.body = JSON.stringify({
-//           message: 'Successfully retrieved employee.',
-//           data: employeeData,
-//         });
-//       } else {
-//         response.statusCode = 404; // Employee not found
-//         response.body = JSON.stringify({
-//           message: `Employee with empId ${empId} not found`,
-//         });
-//       }
-//     } catch (e) {
-//       console.error(e);
-//       response.statusCode = 500; // Internal server error
-//       response.body = JSON.stringify({
-//         message: `Failed to get employee: ${e.message}`,
-//       });
-//     }
-//     return response;
-//   };
+      if (Item) {
+        const employeeData = unmarshall(Item);
+        response.body = JSON.stringify({
+          message: 'Successfully retrieved employee.',
+          data: employeeData,
+        });
+      } else {
+        response.statusCode = 404; // Employee not found
+        response.body = JSON.stringify({
+          message: `Employee with empId ${empId} not found`,
+        });
+      }
+    } catch (e) {
+      console.error(e);
+      response.statusCode = 500; // Internal server error
+      response.body = JSON.stringify({
+        message: `Failed to get employee: ${e.message}`,
+      });
+    }
+    return response;
+  };
   
 //   // Delete Employee by empID
   
