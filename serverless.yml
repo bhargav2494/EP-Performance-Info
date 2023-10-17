@@ -13,7 +13,7 @@ plugins:
 functions:
   empPortal:
     handler: api.handleRequest
-    name: api
+    name: empPortal
     memorySize: 128
     timeout: 5
     events:
