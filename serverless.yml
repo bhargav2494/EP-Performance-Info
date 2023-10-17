@@ -32,17 +32,17 @@ functions:
           - "dynamodb:GetItem"
           - "dynamodb:Scan"
         Resource:
-          - !GetAtt EmployeeTable.Arn
+          - !GetAtt EmpPersonalInfo.Arn
 resources:
   Resources:
-    EmployeeTable:
+    EmpPersonalInfo:
       Type: AWS::DynamoDB::Table
       Properties:
         TableName: ${self:custom.employeeTableName}
         AttributeDefinitions:
           - AttributeName: empId
             AttributeType: S
-        keySchema:
+        KeySchema:
           - AttributeName: empId
             keyType: HASH
         ProvisionedThroughput:
