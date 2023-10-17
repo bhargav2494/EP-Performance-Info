@@ -18,10 +18,10 @@ functions:
     timeout: 5
     events:
       - http:
-          path: employeePerformanceInfo/{empId}
+          path: employee/performanceInfo/{empId}
           method: GET
       - http:
-          path: allemployeesPerformanceInfo
+          path: employees/allPerformanceInfo
           method: GET
       - http:
           path: createPerformanceInfo
@@ -32,10 +32,10 @@ functions:
           - "dynamodb:GetItem"
           - "dynamodb:Scan"
         Resource:
-          - !GetAtt EmpPersonalInfo.Arn
+          - !GetAtt EmployeeTable.Arn
 resources:
   Resources:
-    EmpPersonalInfo:
+    EmployeeTable:
       Type: AWS::DynamoDB::Table
       Properties:
         TableName: ${self:custom.employeeTableName}
